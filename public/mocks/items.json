@@ -1,0 +1,19 @@
+{
+	"items": [
+		{
+			"_id": "573812260e6e9f4425cd9f4d",
+			"text": "Buy something",
+			"status": "OPEN"
+		},
+		{
+			"_id": "573812260e6e9f4425cd9f1d",
+			"text": "Speak with somebody",
+			"status": "OPEN"
+		},
+		{
+			"_id": "573812260e6e9f4425cd9f0d",
+			"text": "Drive guys to airport",
+			"status": "CLOSED"
+		}
+	]
+}
