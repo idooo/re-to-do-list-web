@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { loadToDoList } from "../../store/actions/index";
-import ToDoList from './List'
+import ToDoList from './ToDoList'
 
 const mapStateToProps = (state) => {
 	return {

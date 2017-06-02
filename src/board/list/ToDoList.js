@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ApiHelper } from '../../helpers/Api.helper';
+import ToDoItem from "./ToDoItem";
 
 class ToDoList extends Component {
 
@@ -11,9 +12,7 @@ class ToDoList extends Component {
 				<h5>Your list for today</h5>
 
 				{todos.map(item => {
-					return <div key={item._id}>
-						{item.text} : {item.status}
-					</div>;
+					return <ToDoItem key={item._id} {...item} />;
 				})}
 			</div>
 		)

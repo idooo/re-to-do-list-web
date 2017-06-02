@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ToDoListContainer from "./list/List.container";
+import ToDoListContainer from "./list/ToDoList.container";
 
 class Board extends Component {
 	render () {
