@@ -1,5 +1,4 @@
 import { connect } from 'react-redux'
-import { loadToDoList } from "../../store/actions/index";
 import ToDoList from './ToDoList'
 
 const mapStateToProps = (state) => {
@@ -9,11 +8,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-	return {
-		loadToDoList: (toDoList) => {
-			dispatch(loadToDoList(toDoList))
-		}
-	}
+	return {dispatch}
 };
 
 const ToDoListContainer = connect(

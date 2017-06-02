@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ApiHelper } from '../../helpers/Api.helper';
 import ToDoItem from "./ToDoItem";
+import { fetchToDoList } from "../../store/actions/index";
 
 class ToDoList extends Component {
 
@@ -18,16 +18,8 @@ class ToDoList extends Component {
 		)
 	}
 
-	async componentDidMount () {
-		let { loadToDoList } = this.props;
-		try {
-			const response = await fetch(ApiHelper.getItems(), {accept: 'application/json'});
-			const data = await response.json();
-			loadToDoList(data.items);
-		}
-		catch (ex) {
-			console.error('parsing failed', ex)
-		}
+	componentDidMount () {
+		this.props.dispatch(fetchToDoList())
 	}
 }
 
@@ -37,7 +29,7 @@ ToDoList.propTypes = {
 		text: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired
 	}).isRequired).isRequired,
-	loadToDoList: PropTypes.func.isRequired
+	dispatch: PropTypes.func.isRequired
 };
 
 export default ToDoList;
