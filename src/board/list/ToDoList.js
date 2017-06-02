@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import ToDoItem from "./ToDoItem";
 import { fetchToDoList } from "../../store/actions/index";
+
 
 class ToDoList extends Component {
 
 	render () {
-		let { todos } = this.props;
+		let {todos} = this.props;
 		return (
 			<div>
 				<h5>Your list for today</h5>
@@ -32,4 +34,10 @@ ToDoList.propTypes = {
 	dispatch: PropTypes.func.isRequired
 };
 
-export default ToDoList;
+const mapStateToProps = (state) => {
+	return {
+		todos: state.todos || []
+	}
+};
+
+export default connect(mapStateToProps)(ToDoList)

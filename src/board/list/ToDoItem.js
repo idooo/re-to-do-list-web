@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 class ToDoItem extends Component {
 
 	render () {
-		let { _id, text, status } = this.props;
+		let {_id, text, status} = this.props;
 		return (
 			<div>
-				{text} : {status}
+				{_id} : {text} : {status}
 			</div>
 		)
 	}
-
 }
 
 ToDoItem.propTypes = {
