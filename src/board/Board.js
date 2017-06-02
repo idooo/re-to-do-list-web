@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import ToDoList from "./list/List";
+import ToDoListContainer from "./list/List.container";
 
 class Board extends Component {
 	render () {
 		return (
 			<div>
 				<h3>This is the board</h3>
-				<ToDoList/>
+				<ToDoListContainer/>
 			</div>
 		)
 	}
