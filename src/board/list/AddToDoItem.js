@@ -14,7 +14,10 @@ class AddToDoItem extends Component {
 				<form onSubmit={e => {
 					e.preventDefault();
 					if (!input.value.trim()) return;
-					this.props.dispatch(addToDo(dateDelta, input.value));
+					this.props.dispatch(addToDo({
+						dateDelta,
+						text: input.value
+					}));
 					input.value = ''
 				}}>
 					<input ref={node => {

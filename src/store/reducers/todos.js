@@ -15,7 +15,8 @@ const todo = (state = {}, action) => {
 				_id: action.temporaryId,
 				text: action.text,
 				status: 'OPEN',
-				dateDelta: action.dateDelta
+				dateDelta: action.dateDelta,
+				uuid: action.uuid
 			};
 		default:
 			return state
@@ -61,7 +62,7 @@ const todos = (state = [], action) => {
 		case ADD_TODO_SUCCESS:
 			return [
 				...state.map(item => {
-					if (item._id === action.temporaryId) item._id = action._id;
+					if (item._id === action.temporaryId) return Object.assign({}, item, action.item);
 					return item;
 				})
 			];

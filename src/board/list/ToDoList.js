@@ -19,7 +19,7 @@ class ToDoList extends Component {
 				{todos
 					.filter(item => item.dateDelta === dateDelta)
 					.map((item, index) => {
-					return <ToDoItem key={index} {...item} />;
+					return <ToDoItem key={index} item={item} />;
 				})}
 
 				<AddToDoItem dateDelta={dateDelta}/>

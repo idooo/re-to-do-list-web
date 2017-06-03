@@ -2,21 +2,19 @@ import { ApiHelper } from '../../helpers/Api.helper';
 
 export const MODIFY_TODO = 'MODIFY_TODO';
 export const MODIFY_TODO_FAILED = 'MODIFY_TODO_FAILED';
-export const COPY_TODO = 'COPY_TODO';
-export const COPY_TODO_FAILED = 'COPY_TODO_FAILED';
 export const ADD_TODO_STARTED = 'ADD_TODO_STARTED';
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 export const LOAD_TODO_LIST = 'LOAD_TODO_LIST';
 
 
-export const addToDo = (dateDelta, text) => {
+export const addToDo = (item) => {
 
 	return async (dispatch) => {
 		const temporaryId = `${Date.now()}${Math.random()}`;
-		dispatch(addToDoStarted(temporaryId, {dateDelta, text}));
+		dispatch(addToDoStarted(temporaryId, item));
 		try {
-			const response = await ApiHelper.addToDoItem({dateDelta, text});
+			const response = await ApiHelper.addToDoItem(item);
 			const data = await response.json();
 			dispatch(addToDoSuccess(temporaryId, data.item));
 		}
@@ -74,8 +72,11 @@ export const completeToDo = (_id) => {
 };
 
 
-export const copyToDo = (_id, targetDateDelta) => {
-	//
+export const copyToDo = (item) => {
+	delete item._id;
+	return (dispatch) => {
+		dispatch(addToDo(item));
+	};
 };
 
 export const modifyToDoFailed = (_id, error) => {
