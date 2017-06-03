@@ -11,15 +11,11 @@ class ToDoItem extends Component {
 		return (
 			<div>
 
-				{_id} : {text} : {status}
+				{_id} : {text} : {status} :
 
 				<a onClick={e => {
 					e.preventDefault();
-					this.props.dispatch(completeToDo({
-						text,
-						_id,
-						status: 'CLOSED'
-					}));
+					this.props.dispatch(completeToDo(_id));
 				}}>
 					Complete
 				</a>

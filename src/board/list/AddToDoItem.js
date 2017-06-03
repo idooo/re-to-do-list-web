@@ -6,24 +6,22 @@ import { addToDo } from "../../store/actions/index";
 class AddToDoItem extends Component {
 
 	render () {
+		const {dateDelta} = this.props;
 		let input;
 
 		return (
 			<div>
 				<form onSubmit={e => {
-					e.preventDefault()
-					if (!input.value.trim()) {
-						return
-					}
-					this.props.dispatch(addToDo(input.value));
+					e.preventDefault();
+					if (!input.value.trim()) return;
+					this.props.dispatch(addToDo(dateDelta, input.value));
 					input.value = ''
 				}}>
 					<input ref={node => {
 						input = node
 					}} />
-					<button type="submit">
-						Add Todo
-					</button>
+
+					<button type="submit">Add Todo</button>
 				</form>
 			</div>
 		)
@@ -31,9 +29,11 @@ class AddToDoItem extends Component {
 }
 
 AddToDoItem.propTypes = {
-	// _id: PropTypes.string.isRequired,
-	// text: PropTypes.string.isRequired,
-	// status: PropTypes.string.isRequired
+	dateDelta: PropTypes.number
+};
+
+AddToDoItem.defaultProps = {
+	dateDelta: 0
 };
 
 export default connect()(AddToDoItem)

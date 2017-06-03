@@ -10,16 +10,19 @@ import './ToDoList.css';
 class ToDoList extends Component {
 
 	render () {
-		let {todos} = this.props;
+		let {todos, dateDelta} = this.props;
+
 		return (
 			<div className="ToDoList">
-				<h5>Your list for today</h5>
+				<h5>Your list for {dateDelta}</h5>
 
-				{todos.map((item, index) => {
+				{todos
+					.filter(item => item.dateDelta === dateDelta)
+					.map((item, index) => {
 					return <ToDoItem key={index} {...item} />;
 				})}
 
-				<AddToDoItem/>
+				<AddToDoItem dateDelta={dateDelta}/>
 			</div>
 		)
 	}
@@ -35,6 +38,7 @@ ToDoList.propTypes = {
 		text: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired
 	}).isRequired).isRequired,
+	dateDelta: PropTypes.number.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 

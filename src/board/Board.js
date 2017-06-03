@@ -7,7 +7,9 @@ class Board extends Component {
 		return (
 			<div>
 				<h3>This is the board</h3>
-				<ToDoList/>
+				<ToDoList dateDelta={-1}/>
+				<ToDoList dateDelta={0}/>
+				<ToDoList dateDelta={1}/>
 			</div>
 		)
 	}

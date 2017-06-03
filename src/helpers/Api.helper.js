@@ -11,17 +11,17 @@ class ApiHelper {
 		return fetch(endpoint);
 	}
 
-	static addToDoItem (text) {
+	static addToDoItem (item) {
 		const endpoint = isMocked ? '/mocks/add-todo.json' + ApiHelper.canFail() : '/api/items';
 
 		return fetch(endpoint, {
 			method: isMocked ? GET : POST,
-			body: {text}
+			body: item
 		});
 	}
 
-	static updateToDo (item) {
-		const endpoint = isMocked ? '/mocks/update-todo.json' + ApiHelper.canFail() : '/api/items';
+	static updateToDo (_id, item) {
+		const endpoint = isMocked ? '/mocks/update-todo.json' + ApiHelper.canFail() : `/api/1.0/items/${_id}`;
 
 		return fetch(endpoint, {
 			method: isMocked ? GET : PUT,
