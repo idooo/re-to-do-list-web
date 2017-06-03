@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import ToDoItem from "./ToDoItem";
 import AddToDoItem from "./AddToDoItem";
-import { fetchToDoList } from "../../store/actions/index";
 
 import './ToDoList.css';
 
@@ -25,10 +24,6 @@ class ToDoList extends Component {
 				<AddToDoItem dateDelta={dateDelta}/>
 			</div>
 		)
-	}
-
-	componentDidMount () {
-		this.props.dispatch(fetchToDoList())
 	}
 }
 

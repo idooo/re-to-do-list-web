@@ -39,7 +39,7 @@ ToDoItem.propTypes = {
 		_id: PropTypes.string.isRequired,
 		text: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired,
-		uuid: PropTypes.number
+		uuid: PropTypes.string
 	}).isRequired,
 };
 

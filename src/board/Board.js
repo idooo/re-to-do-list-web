@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import ToDoList from "./list/ToDoList";
+import { fetchToDoList } from "../store/actions/index";
 
 class Board extends Component {
 
@@ -13,6 +15,10 @@ class Board extends Component {
 			</div>
 		)
 	}
+
+	componentDidMount () {
+		this.props.dispatch(fetchToDoList())
+	}
 }
 
-export default Board;
+export default connect()(Board)

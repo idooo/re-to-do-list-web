@@ -1,4 +1,4 @@
-import { ApiHelper } from '../../helpers/Api.helper';
+import APIService from '../../services/API';
 
 export const MODIFY_TODO = 'MODIFY_TODO';
 export const MODIFY_TODO_FAILED = 'MODIFY_TODO_FAILED';
@@ -14,8 +14,11 @@ export const addToDo = (item) => {
 		const temporaryId = `${Date.now()}${Math.random()}`;
 		dispatch(addToDoStarted(temporaryId, item));
 		try {
-			const response = await ApiHelper.addToDoItem(item);
+			const response = await APIService.addToDoItem(item);
 			const data = await response.json();
+
+			// @todo error handling
+			if (response.status !== 200) throw new Error(data);
 			dispatch(addToDoSuccess(temporaryId, data.item));
 		}
 		catch (ex) {
@@ -57,12 +60,12 @@ export const modifyToDo = (_id, item) => {
 };
 
 export const completeToDo = (_id) => {
-	let item = {status: 'CLOSED'};
+	let item = {status: 'DONE'};
 
 	return async (dispatch) => {
 		dispatch(modifyToDo(_id, item));
 		try {
-			const response = await ApiHelper.updateToDo(_id, item);
+			const response = await APIService.updateToDo(_id, item);
 			const data = await response.json();
 		}
 		catch (ex) {
@@ -99,7 +102,7 @@ export function fetchToDoList () {
 
 	return async (dispatch) => {
 		try {
-			const response = await ApiHelper.getItems();
+			const response = await APIService.getItems();
 			const data = await response.json();
 			dispatch(loadToDoList(data.items));
 		}
