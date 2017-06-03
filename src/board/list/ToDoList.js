@@ -2,20 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import ToDoItem from "./ToDoItem";
+import AddToDoItem from "./AddToDoItem";
 import { fetchToDoList } from "../../store/actions/index";
 
+import './ToDoList.css';
 
 class ToDoList extends Component {
 
 	render () {
 		let {todos} = this.props;
 		return (
-			<div>
+			<div className="ToDoList">
 				<h5>Your list for today</h5>
 
-				{todos.map(item => {
-					return <ToDoItem key={item._id} {...item} />;
+				{todos.map((item, index) => {
+					return <ToDoItem key={index} {...item} />;
 				})}
+
+				<AddToDoItem/>
 			</div>
 		)
 	}
