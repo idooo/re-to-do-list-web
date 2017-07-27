@@ -9,16 +9,15 @@ class ToDoItem extends Component {
 	render () {
 		let {item} = this.props;
 		return (
-			<div>
+			<div className={`ToDoItem ToDoItem__${item.status}`}>
 
-				{item._id} : {item.text} : {item.status} :
+				<span onClick={event => this.clickOnStatus(event, item)}>
 
-				<a onClick={e => {
-					e.preventDefault();
-					this.props.dispatch(completeToDo(item._id));
-				}}>
-					Complete
-				</a>
+					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle': 'fa-circle-thin'}`}> </i>
+
+				</span>
+
+				{item.text}
 
 				:
 
@@ -30,6 +29,11 @@ class ToDoItem extends Component {
 				</a>
 			</div>
 		)
+	}
+
+	clickOnStatus (event, item) {
+		event.preventDefault();
+		if (item.status !== 'DONE') this.props.dispatch(completeToDo(item._id));
 	}
 
 }

@@ -4,12 +4,14 @@ import { Provider } from "react-redux";
 import { Route } from "react-router";
 import { HashRouter } from "react-router-dom";
 import registerServiceWorker from './registerServiceWorker';
-import './index.css';
 
 import Board from "./board/Board";
 import Registration from "./registration/Registration";
 import configureStore from "./store/configure";
 import storage from "./store/storage";
+
+import './index.css';
+import './font-awesome/css/font-awesome.css'
 
 const store = configureStore(storage.get('RETODO') || {});
 

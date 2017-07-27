@@ -1,4 +1,15 @@
 .ToDoList {
 	background-color: #ecf0f1;
-	/*width: 30em;*/
+	width: 30%;
+	/*max-width: 300px;*/
+	margin: 0 20px;
+	padding: 0 20px;
 }
+
+.ToDoItem {
+	padding: 5px 0;
+}
+
+	.ToDoItem__DONE {
+		text-decoration: line-through;
+	}

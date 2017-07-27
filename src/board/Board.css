@@ -1,0 +1,10 @@
+.Board {
+
+}
+
+.Board-container {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	justify-content: center;
+}
