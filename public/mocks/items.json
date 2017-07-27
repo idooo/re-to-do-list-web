@@ -3,7 +3,7 @@
 		{
 			"_id": "573812260e6e9f4425cd9f4e",
 			"text": "Buy something bananas",
-			"uuid": 1,
+			"uuid": "1",
 			"date": "",
 			"dateDelta": -1,
 			"status": "IN_PROGRESS"
@@ -11,7 +11,7 @@
 		{
 			"_id": "173812260e6e9f4425cd9f1d",
 			"text": "Meeting with board members",
-			"uuid": 2,
+			"uuid": "2",
 			"date": "",
 			"dateDelta": -1,
 			"status": "CLOSED"
@@ -19,7 +19,7 @@
 		{
 			"_id": "273812260e6e9f4425cd1231",
 			"text": "Wash my car",
-			"uuid": 3,
+			"uuid": "3",
 			"date": "",
 			"dateDelta": -1,
 			"status": "OPEN"
@@ -27,7 +27,7 @@
 		{
 			"_id": "573812260e6e9f4425cd9f45",
 			"text": "Buy something bananas",
-			"uuid": 1,
+			"uuid": "1",
 			"date": "",
 			"dateDelta": 0,
 			"status": "OPEN"
@@ -35,7 +35,7 @@
 		{
 			"_id": "573812260e6e9f4425cd9f1a",
 			"text": "Speak with somebody",
-			"uuid": 4,
+			"uuid": "4",
 			"date": "",
 			"dateDelta": 0,
 			"status": "OPEN"
@@ -43,7 +43,7 @@
 		{
 			"_id": "573812260e6e9f4425cd9f0z",
 			"text": "Drive guys to airport",
-			"uuid": 5,
+			"uuid": "5",
 			"date": "",
 			"dateDelta": 0,
 			"status": "CLOSED"
