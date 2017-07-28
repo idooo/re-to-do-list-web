@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { completeToDo, copyToDo } from "../../store/actions/index";
-
+import { copyToDo, modifyToDo } from "../../store/actions/index";
+import { RIEInput } from 'riek';
 
 class ToDoItem extends Component {
 
@@ -11,15 +11,22 @@ class ToDoItem extends Component {
 		return (
 			<div className={`ToDoItem ToDoItem__${item.status}`}>
 
-				<span onClick={event => this.clickOnStatus(event, item)}>
+				<span onClick={() => this.clickOnStatus(item._id, item.status)}>
 
-					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle': 'fa-circle-thin'}`}> </i>
+					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle' : 'fa-circle-thin'}`}> </i>
 
 				</span>
 
-				{item.text}
+				<RIEInput
+					value={item.text}
+					change={object => this.textChanged(item._id, object.text)}
+					propName="text"
+					className={"editable"}
+					validate={this.isStringAcceptable}/>
 
 				:
+
+				<i className="fa fa-cog"> </i>
 
 				<a onClick={e => {
 					e.preventDefault();
@@ -31,9 +38,12 @@ class ToDoItem extends Component {
 		)
 	}
 
-	clickOnStatus (event, item) {
-		event.preventDefault();
-		if (item.status !== 'DONE') this.props.dispatch(completeToDo(item._id));
+	clickOnStatus (_id, status) {
+		this.props.dispatch(modifyToDo(_id, {status: status !== 'DONE' ? 'DONE' : 'OPEN'}));
+	}
+
+	textChanged (_id, text) {
+		this.props.dispatch(modifyToDo(_id, {text}));
 	}
 
 }

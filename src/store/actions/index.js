@@ -2,6 +2,7 @@ import APIService from '../../services/API';
 
 export const MODIFY_TODO = 'MODIFY_TODO';
 export const MODIFY_TODO_FAILED = 'MODIFY_TODO_FAILED';
+export const MODIFY_TODO_SUCCEED = 'MODIFY_TODO_SUCCEED';
 export const ADD_TODO_STARTED = 'ADD_TODO_STARTED';
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
@@ -52,28 +53,25 @@ export const addToDoFailed = (temporaryId, error) => {
 };
 
 export const modifyToDo = (_id, item) => {
-	return {
-		type: MODIFY_TODO,
-		_id,
-		item
-	}
-};
-
-export const completeToDo = (_id) => {
-	let item = {status: 'DONE'};
-
 	return async (dispatch) => {
-		dispatch(modifyToDo(_id, item));
+		dispatch({
+			type: MODIFY_TODO,
+			_id,
+			item
+		});
 		try {
 			const response = await APIService.updateToDo(_id, item);
 			const data = await response.json();
+			if (response.status !== 200) {
+				return dispatch(modifyToDoFailed(_id, data));
+			}
+			dispatch(modifyToDoSucceed(_id, data));
 		}
 		catch (ex) {
-			dispatch(modifyToDoFailed(_id, 'Unknown error'));
+			dispatch(modifyToDoFailed(_id, {error: 'unknown'}));
 		}
 	};
 };
-
 
 export const copyToDo = (item) => {
 	delete item._id;
@@ -87,6 +85,14 @@ export const modifyToDoFailed = (_id, error) => {
 		type: MODIFY_TODO_FAILED,
 		_id,
 		error
+	}
+};
+
+export const modifyToDoSucceed = (_id, item) => {
+	return {
+		type: MODIFY_TODO_SUCCEED,
+		_id,
+		item
 	}
 };
 
