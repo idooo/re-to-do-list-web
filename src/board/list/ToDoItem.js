@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import { copyToDo, modifyToDo } from "../../store/actions/index";
 import { RIEInput } from 'riek';
+import { copyToDo, modifyToDo } from "../../store/actions/index";
 
 class ToDoItem extends Component {
 
 	render () {
 		let {item} = this.props;
 		return (
-			<div className={`ToDoItem ToDoItem__${item.status}`}>
+			<div className={`ToDoItem ToDoItem--${item.status}`}>
 
 				<span onClick={() => this.clickOnStatus(item._id, item.status)}>
 
@@ -24,16 +24,8 @@ class ToDoItem extends Component {
 					className={"editable"}
 					validate={this.isStringAcceptable}/>
 
-				:
+				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(item)}> </i>
 
-				<i className="fa fa-cog"> </i>
-
-				<a onClick={e => {
-					e.preventDefault();
-					this.props.dispatch(copyToDo({...item, dateDelta: item.dateDelta + 1}));
-				}}>
-					Copy
-				</a>
 			</div>
 		)
 	}
@@ -44,6 +36,10 @@ class ToDoItem extends Component {
 
 	textChanged (_id, text) {
 		this.props.dispatch(modifyToDo(_id, {text}));
+	}
+
+	copy (item) {
+		this.props.dispatch(copyToDo({...item, dateDelta: item.dateDelta + 1}));
 	}
 
 }

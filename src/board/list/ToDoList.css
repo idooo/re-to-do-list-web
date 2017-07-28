@@ -10,6 +10,15 @@
 	padding: 5px 0;
 }
 
-	.ToDoItem__DONE {
+	.ToDoItem--DONE {
 		text-decoration: line-through;
 	}
+
+	.ToDoItem__copy {
+		text-align: right;
+		float: right;
+	}
+
+		.ToDoItem__copy:hover {
+			color: red;
+		}
