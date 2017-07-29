@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import * as moment from 'moment';
 import { connect } from "react-redux";
 import { RIEInput } from 'riek';
 import { copyToDo, modifyToDo } from "../../store/actions/index";
