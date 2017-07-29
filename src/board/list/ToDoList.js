@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import ToDoItem from "./ToDoItem";
@@ -6,22 +6,22 @@ import AddToDoItem from "./AddToDoItem";
 
 import './ToDoList.css';
 
-class ToDoList extends Component {
+class ToDoList extends React.Component {
 
 	render () {
-		let {todos, dateDelta} = this.props;
+		let {todos, dateCode} = this.props;
 
 		return (
 			<div className="ToDoList">
-				<h5>Your list for {dateDelta}</h5>
+				<h5>Your list for {dateCode}</h5>
 
 				{todos
-					.filter(item => item.dateDelta === dateDelta)
+					.filter(item => item.dateCode === dateCode)
 					.map((item, index) => {
-					return <ToDoItem key={index} item={item} />;
-				})}
+						return <ToDoItem key={index} item={item}/>;
+					})}
 
-				<AddToDoItem dateDelta={dateDelta}/>
+				<AddToDoItem dateCode={dateCode}/>
 			</div>
 		)
 	}
@@ -33,7 +33,7 @@ ToDoList.propTypes = {
 		text: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired
 	}).isRequired).isRequired,
-	dateDelta: PropTypes.number.isRequired,
+	dateCode: PropTypes.string.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 

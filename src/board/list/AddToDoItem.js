@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { addToDo } from "../../store/actions/index";
 
-class AddToDoItem extends Component {
+class AddToDoItem extends React.Component {
 
 	render () {
-		const {dateDelta} = this.props;
+		const {dateCode} = this.props;
 		let input;
 
 		return (
@@ -15,7 +15,7 @@ class AddToDoItem extends Component {
 					e.preventDefault();
 					if (!input.value.trim()) return;
 					this.props.dispatch(addToDo({
-						dateDelta,
+						dateCode,
 						text: input.value
 					}));
 					input.value = ''
@@ -32,11 +32,7 @@ class AddToDoItem extends Component {
 }
 
 AddToDoItem.propTypes = {
-	dateDelta: PropTypes.number
-};
-
-AddToDoItem.defaultProps = {
-	dateDelta: 0
+	dateCode: PropTypes.string.isRequired
 };
 
 export default connect()(AddToDoItem)

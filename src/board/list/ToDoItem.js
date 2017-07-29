@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import * as moment from 'moment';
 import { connect } from "react-redux";
 import { RIEInput } from 'riek';
 import { copyToDo, modifyToDo } from "../../store/actions/index";
+import { DateCode } from "../../services/datecode";
 
-class ToDoItem extends Component {
+class ToDoItem extends React.Component {
 
 	render () {
 		let {item} = this.props;
@@ -24,7 +26,7 @@ class ToDoItem extends Component {
 					className={"editable"}
 					validate={this.isStringAcceptable}/>
 
-				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(item)}> </i>
+				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(item, 1)}> </i>
 
 			</div>
 		)
@@ -38,8 +40,8 @@ class ToDoItem extends Component {
 		this.props.dispatch(modifyToDo(_id, {text}));
 	}
 
-	copy (item) {
-		this.props.dispatch(copyToDo({...item, dateDelta: item.dateDelta + 1}));
+	copy (item, days) {
+		this.props.dispatch(copyToDo({...item, dateCode: DateCode.getNextDateCode(item.dateCode)}));
 	}
 
 }
