@@ -5,7 +5,6 @@ import { Route } from "react-router";
 import { HashRouter } from "react-router-dom";
 import * as Cookies from 'js-cookie';
 
-import registerServiceWorker from './registerServiceWorker';
 import Header from "./header/Header";
 import Board from "./board/Board";
 import MainPage from "./registration/MainPage";
@@ -35,7 +34,3 @@ ReactDOM.render(
 	</Provider>,
 	document.getElementById('root')
 );
-
-
-
-registerServiceWorker();

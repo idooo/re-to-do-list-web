@@ -6,7 +6,11 @@ let configureStore;
 
 if (process.env.NODE_ENV === 'production') {
 	configureStore = function (initialState) {
-		return createStore(rootReducer, initialState);
+		return createStore(rootReducer, initialState, compose(
+			applyMiddleware(
+				thunkMiddleware
+			)
+		));
 	}
 }
 else {

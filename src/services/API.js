@@ -3,12 +3,19 @@ const POST = 'POST';
 const GET = 'GET';
 const PUT = 'PUT';
 const MOCKED_CHANCE_TO_FAIL = 0.1;
-const DEV_HOST = 'http://localhost:8080';
 
+let HOST = '';
+if (process.env.NODE_ENV !== 'production') {
+	HOST = 'http://localhost:8080';
+}
 
 class APIService {
 
 	static headers = {'Content-Type': 'application/json'};
+
+	static getAPIHost () {
+		return HOST;
+	}
 
 	static addAuthorisationHeader (token) {
 		if (token) APIService.headers['Authorization'] = `Bearer ${token}`;
@@ -21,23 +28,23 @@ class APIService {
 	static getToDoLists () {
 		const endpoint = isMocked
 			? '/mocks/lists.json'
-			: `${DEV_HOST}/api/1.0/lists`;
+			: `${HOST}/api/1.0/lists`;
 
-		return fetch(endpoint, { headers: APIService.headers });
+		return fetch(endpoint, {headers: APIService.headers});
 	}
 
 	static getItems (listId) {
 		const endpoint = isMocked
 			? '/mocks/items.json'
-			: `${DEV_HOST}/api/1.0/list/${listId}`;
+			: `${HOST}/api/1.0/list/${listId}`;
 
-		return fetch(endpoint, { headers: APIService.headers });
+		return fetch(endpoint, {headers: APIService.headers});
 	}
 
 	static addToDoItem (listId, item) {
 		const endpoint = isMocked
 			? '/mocks/add-todo.json' + APIService.canFail()
-			: `${DEV_HOST}/api/1.0/list/${listId}/item`;
+			: `${HOST}/api/1.0/list/${listId}/item`;
 
 		return fetch(endpoint, {
 			method: isMocked ? GET : POST,
@@ -49,7 +56,7 @@ class APIService {
 	static updateToDo (listId, itemId, updateObject) {
 		const endpoint = isMocked
 			? '/mocks/update-todo.json' + APIService.canFail()
-			: `${DEV_HOST}/api/1.0/list/${listId}/item/${itemId}`;
+			: `${HOST}/api/1.0/list/${listId}/item/${itemId}`;
 
 		return fetch(endpoint, {
 			method: isMocked ? GET : PUT,
