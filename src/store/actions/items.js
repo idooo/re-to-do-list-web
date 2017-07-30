@@ -9,13 +9,13 @@ export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 export const LOAD_TODO_LIST = 'LOAD_TODO_LIST';
 
 
-export const addToDo = (item) => {
+export const addToDo = (listId, item) => {
 
 	return async (dispatch) => {
 		const temporaryId = `${Date.now()}${Math.random()}`;
 		dispatch(addToDoStarted(temporaryId, item));
 		try {
-			const response = await APIService.addToDoItem(item);
+			const response = await APIService.addToDoItem(listId, item);
 			const data = await response.json();
 
 			// @todo error handling
@@ -52,31 +52,31 @@ export const addToDoFailed = (temporaryId, error) => {
 	}
 };
 
-export const modifyToDo = (_id, item) => {
+export const modifyToDo = (listId, itemId, item) => {
 	return async (dispatch) => {
 		dispatch({
 			type: MODIFY_TODO,
-			_id,
+			_id: itemId,
 			item
 		});
 		try {
-			const response = await APIService.updateToDo(_id, item);
+			const response = await APIService.updateToDo(listId, itemId, item);
 			const data = await response.json();
 			if (response.status !== 200) {
-				return dispatch(modifyToDoFailed(_id, data));
+				return dispatch(modifyToDoFailed(itemId, data));
 			}
-			dispatch(modifyToDoSucceed(_id, data));
+			dispatch(modifyToDoSucceed(itemId, data));
 		}
 		catch (ex) {
-			dispatch(modifyToDoFailed(_id, {error: 'unknown'}));
+			dispatch(modifyToDoFailed(itemId, {error: 'unknown'}));
 		}
 	};
 };
 
-export const copyToDo = (item) => {
+export const copyToDo = (listId, item) => {
 	delete item._id;
 	return (dispatch) => {
-		dispatch(addToDo(item));
+		dispatch(addToDo(listId, item));
 	};
 };
 
@@ -104,13 +104,13 @@ export const loadToDoList = (toDoList) => {
 };
 
 
-export function fetchToDoList () {
+export function fetchToDoItems (listId) {
 
 	return async (dispatch) => {
 		try {
-			const response = await APIService.getItems();
+			const response = await APIService.getItems(listId);
 			const data = await response.json();
-			dispatch(loadToDoList(data.items));
+			dispatch(loadToDoList(data.docs));
 		}
 		catch (ex) {
 			console.error('parsing failed', ex)

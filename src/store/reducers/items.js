@@ -5,7 +5,7 @@ import {
 	LOAD_TODO_LIST,
 	MODIFY_TODO,
 	MODIFY_TODO_FAILED
-} from "../actions/index";
+} from "../actions/items";
 
 
 const todo = (state = {}, action) => {

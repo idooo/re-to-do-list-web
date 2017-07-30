@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { RIEInput } from 'riek';
-import { copyToDo, modifyToDo } from "../../store/actions/index";
+import { copyToDo, modifyToDo } from "../../store/actions/items";
 import { DateCode } from "../../services/datecode";
 
 class ToDoItem extends React.Component {
@@ -12,37 +12,36 @@ class ToDoItem extends React.Component {
 		return (
 			<div className={`ToDoItem ToDoItem--${item.status}`}>
 
-				<span onClick={() => this.clickOnStatus(item._id, item.status)}>
-
+				<span onClick={() => this.clickOnStatus()}>
 					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle' : 'fa-circle-thin'}`}> </i>
-
 				</span>
 
 				<RIEInput
 					value={item.text}
-					change={object => this.textChanged(item._id, object.text)}
+					change={object => this.textChanged(object.text)}
 					propName="text"
-					className={"editable"}
-					validate={this.isStringAcceptable}/>
+					className={"editable"}/>
 
-				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(item, 1)}> </i>
+				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(1)}> </i>
 
 			</div>
 		)
 	}
 
-	clickOnStatus (_id, status) {
-		this.props.dispatch(modifyToDo(_id, {status: status !== 'DONE' ? 'DONE' : 'OPEN'}));
+	clickOnStatus () {
+		const { listId, item } = this.props;
+		this.props.dispatch(modifyToDo(listId, item._id, {status: item.status !== 'DONE' ? 'DONE' : 'OPEN'}));
 	}
 
-	textChanged (_id, text) {
-		this.props.dispatch(modifyToDo(_id, {text}));
+	textChanged (text) {
+		const { listId, item } = this.props;
+		this.props.dispatch(modifyToDo(listId, item._id, {text}));
 	}
 
-	copy (item, days) {
-		this.props.dispatch(copyToDo({...item, dateCode: DateCode.getNextDateCode(item.dateCode)}));
+	copy (days) {
+		const { listId, item } = this.props;
+		this.props.dispatch(copyToDo(listId, {...item, dateCode: DateCode.getNextDateCode(item.dateCode, days)}));
 	}
-
 }
 
 ToDoItem.propTypes = {
@@ -52,6 +51,7 @@ ToDoItem.propTypes = {
 		status: PropTypes.string.isRequired,
 		uuid: PropTypes.string
 	}).isRequired,
+	listId: PropTypes.string.isRequired
 };
 
 

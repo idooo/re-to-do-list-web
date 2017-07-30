@@ -18,13 +18,27 @@ class APIService {
 		delete APIService.headers['Authorization'];
 	}
 
-	static getItems () {
-		const endpoint = isMocked ? '/mocks/items.json' : `${DEV_HOST}/api/1.0/items`;
+	static getToDoLists () {
+		const endpoint = isMocked
+			? '/mocks/lists.json'
+			: `${DEV_HOST}/api/1.0/lists`;
+
 		return fetch(endpoint, { headers: APIService.headers });
 	}
 
-	static addToDoItem (item) {
-		const endpoint = isMocked ? '/mocks/add-todo.json' + APIService.canFail() : `${DEV_HOST}/api/1.0/item`;
+	static getItems (listId) {
+		const endpoint = isMocked
+			? '/mocks/items.json'
+			: `${DEV_HOST}/api/1.0/list/${listId}`;
+
+		return fetch(endpoint, { headers: APIService.headers });
+	}
+
+	static addToDoItem (listId, item) {
+		const endpoint = isMocked
+			? '/mocks/add-todo.json' + APIService.canFail()
+			: `${DEV_HOST}/api/1.0/list/${listId}/item`;
+
 		return fetch(endpoint, {
 			method: isMocked ? GET : POST,
 			body: JSON.stringify(item),
@@ -32,12 +46,14 @@ class APIService {
 		});
 	}
 
-	static updateToDo (_id, item) {
-		const endpoint = isMocked ? '/mocks/update-todo.json' + APIService.canFail() : `${DEV_HOST}/api/1.0/item/${_id}`;
+	static updateToDo (listId, itemId, updateObject) {
+		const endpoint = isMocked
+			? '/mocks/update-todo.json' + APIService.canFail()
+			: `${DEV_HOST}/api/1.0/list/${listId}/item/${itemId}`;
 
 		return fetch(endpoint, {
 			method: isMocked ? GET : PUT,
-			body: JSON.stringify(item),
+			body: JSON.stringify(updateObject),
 			headers: APIService.headers
 		});
 	}

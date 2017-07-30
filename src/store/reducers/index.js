@@ -1,9 +1,11 @@
 import {combineReducers} from 'redux';
-import todos from "./todos";
-import auth from "./auth";
+import items from './items';
+import auth from './auth';
+import lists from './lists';
 
 const rootReducer = combineReducers({
-	todos,
+	lists,
+	items,
 	auth
 });
 

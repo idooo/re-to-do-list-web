@@ -9,37 +9,38 @@ import './ToDoList.css';
 class ToDoList extends React.Component {
 
 	render () {
-		let {todos, dateCode} = this.props;
+		const {items, dateCode, listId} = this.props;
 
 		return (
 			<div className="ToDoList">
 				<h5>Your list for {dateCode}</h5>
 
-				{todos
+				{items
 					.filter(item => item.dateCode === dateCode)
 					.map((item, index) => {
-						return <ToDoItem key={index} item={item}/>;
+						return <ToDoItem key={index} item={item} listId={listId}/>;
 					})}
 
-				<AddToDoItem dateCode={dateCode}/>
+				<AddToDoItem dateCode={dateCode} listId={listId}/>
 			</div>
 		)
 	}
 }
 
 ToDoList.propTypes = {
-	todos: PropTypes.arrayOf(PropTypes.shape({
+	items: PropTypes.arrayOf(PropTypes.shape({
 		_id: PropTypes.string.isRequired,
 		text: PropTypes.string.isRequired,
 		status: PropTypes.string.isRequired
 	}).isRequired).isRequired,
+	listId: PropTypes.string.isRequired,
 	dateCode: PropTypes.string.isRequired,
 	dispatch: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
 	return {
-		todos: state.todos || []
+		items: state.items || []
 	}
 };
 

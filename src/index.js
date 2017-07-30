@@ -8,7 +8,7 @@ import * as Cookies from 'js-cookie';
 import registerServiceWorker from './registerServiceWorker';
 import Header from "./header/Header";
 import Board from "./board/Board";
-import Registration from "./registration/Registration";
+import MainPage from "./registration/MainPage";
 import configureStore from "./store/configure";
 import storage from "./store/storage";
 import APIService from "./services/API";
@@ -27,8 +27,8 @@ ReactDOM.render(
 			<div className="App">
 				<Header/>
 				<div>
-					<Route exact path="/" component={Registration}/>
-					<Route path="/board" component={Board}/>
+					<Route exact path="/" component={MainPage}/>
+					<Route path="/board/:listId" component={Board}/>
 				</div>
 			</div>
 		</HashRouter>
