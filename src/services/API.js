@@ -11,14 +11,15 @@ class APIService {
 	static headers = {'Content-Type': 'application/json'};
 
 	static addAuthorisationHeader (token) {
-		console.log('addAuthorisationHeader')
-		if (token) APIService.headers['Authorization'] = `Bearer ${token}`
+		if (token) APIService.headers['Authorization'] = `Bearer ${token}`;
+	}
+
+	static removeAuthorisationHeader () {
+		delete APIService.headers['Authorization'];
 	}
 
 	static getItems () {
 		const endpoint = isMocked ? '/mocks/items.json' : `${DEV_HOST}/api/1.0/items`;
-
-		console.log('getItems')
 		return fetch(endpoint, { headers: APIService.headers });
 	}
 

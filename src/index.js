@@ -12,13 +12,14 @@ import Registration from "./registration/Registration";
 import configureStore from "./store/configure";
 import storage from "./store/storage";
 import APIService from "./services/API";
+import { JWT_COOKIE_NAME } from "./services/auth";
 
 import './index.css';
 import './font-awesome/css/font-awesome.css'
 
 const store = configureStore(storage.get('RETODO') || {});
 
-APIService.addAuthorisationHeader(Cookies.get('jwt'));
+APIService.addAuthorisationHeader(Cookies.get(JWT_COOKIE_NAME));
 
 ReactDOM.render(
 	<Provider store={store}>

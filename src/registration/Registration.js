@@ -10,8 +10,6 @@ class Registration extends React.Component {
 				<h1>Welcome ido_q</h1>
 				<Link to="/board">Go to your board</Link>
 
-				<br/><br/>
-				<a href="http://localhost:8080/login">Login</a>
 			</div>
 		)
 	}
