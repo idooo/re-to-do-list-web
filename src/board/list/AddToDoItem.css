@@ -1,0 +1,29 @@
+.AddToDoItem {
+
+}
+
+	.AddToDoItem__input {
+		margin-left: 25px;
+		margin-bottom: 10px;
+		margin-top: 5px;
+		border: none;
+		padding: 4px;
+		border-bottom: 1px solid #c1c1c1;
+		background-color: transparent;
+		font-size: 14px;
+	}
+
+		.AddToDoItem__input::placeholder {
+			font-style: italic;
+		}
+
+		.AddToDoItem__input:focus {
+			outline: none;
+		}
+
+	.AddToDoItem__enter-symbol {
+		color: #9b9b9b;
+		font-size: 14px;
+		vertical-align: sub;
+	}
+

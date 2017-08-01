@@ -5,6 +5,7 @@ import ToDoItem from "./ToDoItem";
 import AddToDoItem from "./AddToDoItem";
 
 import './ToDoList.css';
+import { DateCode } from "../../services/datecode";
 
 class ToDoList extends React.Component {
 
@@ -13,7 +14,7 @@ class ToDoList extends React.Component {
 
 		return (
 			<div className="ToDoList">
-				<h5>Your list for {dateCode}</h5>
+				<h5 className="ToDoList__header">{DateCode.formattedDateCode(dateCode)}</h5>
 
 				{items
 					.filter(item => item.dateCode === dateCode)
@@ -25,6 +26,7 @@ class ToDoList extends React.Component {
 			</div>
 		)
 	}
+
 }
 
 ToDoList.propTypes = {

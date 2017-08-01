@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { addToDo } from "../../store/actions/items";
 
+import './AddToDoItem.css';
+
+
 class AddToDoItem extends React.Component {
 
 	render () {
 		let input;
 
 		return (
-			<div>
+			<div className="AddToDoItem">
 				<form onSubmit={e => this.submitToDoForm(e, input)}>
-					<input ref={node => {
+					<input placeholder="Add item..." className="AddToDoItem__input" ref={node => {
 						input = node
 					}} />
-
-					<button type="submit">Add Todo</button>
+					<span className="AddToDoItem__enter-symbol">↩</span>
 				</form>
 			</div>
 		)

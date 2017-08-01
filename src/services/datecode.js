@@ -49,4 +49,20 @@ export class DateCode {
 	static getPrevDateCode (dateCode, days = -1) {
 		return moment(dateCode, TODO_DATE_CODE_FORMAT).add(Math.abs(days) * -1, 'days').format(TODO_DATE_CODE_FORMAT)
 	}
+
+	/**
+	 * Return human readable date code
+	 * @param {string} dateCode
+	 * @returns {string}
+	 */
+	static formattedDateCode (dateCode) {
+		return moment(dateCode, TODO_DATE_CODE_FORMAT).calendar(null, {
+			sameDay: '[Today]',
+			nextDay: '[Tomorrow]',
+			nextWeek: 'dddd',
+			lastDay: '[Yesterday]',
+			lastWeek: '[Last] dddd',
+			sameElse: 'DD/MM/YYYY'
+		});
+	}
 }

@@ -3,6 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { AuthenticationService } from "../services/auth";
 import APIService from "../services/API";
 
+import './Header.css';
+
+
 class Header extends React.Component {
 
 	constructor (props) {
@@ -12,10 +15,10 @@ class Header extends React.Component {
 
 	render () {
 		return (
-			<div className="App-header">
-				<h2>Welcome to Re To-Do List</h2>
+			<div className="Header">
+				<h2 className="Header__text">Re To-Do</h2>
 
-				<div>
+				<div className="Header__auth-container">
 					<a href={`${APIService.getAPIHost()}/api/1.0/login`}>Login</a> |
 					<a onClick={e => this.logout(e, this.props)}>Logout</a>
 				</div>

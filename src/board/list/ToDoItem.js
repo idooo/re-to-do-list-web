@@ -12,7 +12,7 @@ class ToDoItem extends React.Component {
 		return (
 			<div className={`ToDoItem ToDoItem--${item.status}`}>
 
-				<span onClick={() => this.clickOnStatus()}>
+				<span className="ToDoItem__status" onClick={() => this.clickOnStatus()}>
 					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle' : 'fa-circle-thin'}`}> </i>
 				</span>
 

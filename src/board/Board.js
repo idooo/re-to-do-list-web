@@ -15,7 +15,6 @@ class Board extends React.Component {
 
 		return (
 			<div className="Board">
-				<h3>This is the board</h3>
 				<div className="Board-container">
 					<ToDoList dateCode={dateCodes[0]} listId={listId}/>
 					<ToDoList dateCode={dateCodes[1]} listId={listId}/>

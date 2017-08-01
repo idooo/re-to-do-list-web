@@ -1,0 +1,15 @@
+.Header {
+	padding-bottom: 10px;
+}
+
+	.Header__text {
+		text-align: center;
+		font-size: 22px;
+		font-weight: 600;
+		padding: 10px;
+	}
+
+	.Header__auth-container {
+		text-align: center;
+		font-size: 14px;
+	}

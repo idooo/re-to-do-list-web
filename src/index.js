@@ -13,6 +13,7 @@ import storage from "./store/storage";
 import APIService from "./services/API";
 import { JWT_COOKIE_NAME } from "./services/auth";
 
+import './reset.css';
 import './index.css';
 import './font-awesome/css/font-awesome.css'
 
