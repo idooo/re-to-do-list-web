@@ -1,6 +1,7 @@
 
 .ToDoItem {
 	padding: 5px;
+	font-size: 14px;
 }
 
 	.ToDoItem--DONE {
@@ -10,6 +11,23 @@
 	.ToDoItem:hover .ToDoItem__controls {
 		display: inline;
 	}
+
+	.ToDoItem__input {
+		border: none;
+		color: #8e44ad;
+		font-size: 14px;
+		padding: 0;
+		font-style: italic;
+		background-color: transparent;
+	}
+
+		.ToDoItem__input::placeholder {
+			font-style: italic;
+		}
+
+		.ToDoItem__input:focus {
+			outline: none;
+		}
 
 	.ToDoItem__status {
 		margin-right: 10px;

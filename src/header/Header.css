@@ -1,15 +1,25 @@
 .Header {
-	padding-bottom: 10px;
+
 }
 
 	.Header__text {
 		text-align: center;
 		font-size: 22px;
 		font-weight: 600;
-		padding: 10px;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		color: white;
+		padding: 16px;
 	}
 
-	.Header__auth-container {
-		text-align: center;
-		font-size: 14px;
+	.Header__logout {
+		right: 30px;
+		top: 16px;
+		position: absolute;
 	}
+
+		.Header__logout a:hover {
+			cursor: pointer;
+			color: #9b59b6;
+		}
+

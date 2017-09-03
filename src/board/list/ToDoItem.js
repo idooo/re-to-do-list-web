@@ -28,7 +28,7 @@ class ToDoItem extends React.Component {
 					value={item.text}
 					change={object => this.textChanged(object.text)}
 					propName="text"
-					className={"editable"}/>
+					classEditing="ToDoItem__input"/>
 
 				<span className="ToDoItem__controls">
 					<i className="fa fa-copy ToDoItem__copy" alt="Copy to next day" onClick={() => this.copy(1)}> </i>

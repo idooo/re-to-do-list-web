@@ -1,5 +1,5 @@
 .AddToDoItem {
-
+	margin: 10px 0;
 }
 
 	.AddToDoItem__input {
@@ -15,6 +15,8 @@
 
 		.AddToDoItem__input::placeholder {
 			font-style: italic;
+			color: #9b9b9b;
+			font-size: 12px;
 		}
 
 		.AddToDoItem__input:focus {
