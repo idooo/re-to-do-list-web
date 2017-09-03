@@ -4,7 +4,17 @@ import APIService from "./API";
 
 export const JWT_COOKIE_NAME = 'jwt';
 
+let isAuhtorised = false;
+
 export class AuthenticationService {
+
+	static setAuthorised(auth) {
+		isAuhtorised = auth;
+	}
+
+	static isAuthorised() {
+		return isAuhtorised;
+	}
 
 	static authorise (history, redirect) {
 		const parsedToken = queryString.parse(location.hash)['/token']; // eslint-disable-line no-restricted-globals

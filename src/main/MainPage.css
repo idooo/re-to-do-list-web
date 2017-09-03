@@ -1,0 +1,19 @@
+.MainPage {
+
+}
+
+	.MainPage__container {
+		margin: 0 auto 20px;
+		max-width: 400px;
+		background-color: #ecf0f1;
+		width: 30%;
+		padding: 20px;
+	}
+
+		.MainPage__header {
+
+		}
+
+		.MainPage__list {
+			padding: 5px 0;
+		}

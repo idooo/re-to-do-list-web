@@ -1,3 +1,5 @@
+import { AuthenticationService } from "./auth";
+
 const isMocked = !!(process.env.REACT_APP_MOCKS);
 const POST = 'POST';
 const GET = 'GET';
@@ -18,11 +20,15 @@ class APIService {
 	}
 
 	static addAuthorisationHeader (token) {
-		if (token) APIService.headers['Authorization'] = `Bearer ${token}`;
+		if (token) {
+			APIService.headers['Authorization'] = `Bearer ${token}`;
+			AuthenticationService.setAuthorised(true);
+		}
 	}
 
 	static removeAuthorisationHeader () {
 		delete APIService.headers['Authorization'];
+		AuthenticationService.setAuthorised(false);
 	}
 
 	static getToDoLists () {

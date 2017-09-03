@@ -7,7 +7,7 @@ import * as Cookies from 'js-cookie';
 
 import Header from "./header/Header";
 import Board from "./board/Board";
-import MainPage from "./registration/MainPage";
+import MainPage from "./main/MainPage";
 import configureStore from "./store/configure";
 import storage from "./store/storage";
 import APIService from "./services/API";
