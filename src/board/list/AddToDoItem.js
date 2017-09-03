@@ -17,7 +17,7 @@ class AddToDoItem extends React.Component {
 					<input placeholder="Add item..." className="AddToDoItem__input" ref={node => {
 						input = node
 					}} />
-					<span className="AddToDoItem__enter-symbol">↩</span>
+					<span className="AddToDoItem__enter-symbol">↵</span>
 				</form>
 			</div>
 		)

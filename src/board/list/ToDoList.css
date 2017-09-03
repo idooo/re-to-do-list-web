@@ -2,7 +2,7 @@
 	background-color: #ecf0f1;
 	width: 30%;
 	margin: 0 20px;
-	padding: 0 20px;
+	padding: 0 10px;
 }
 
 	.ToDoList__header {
@@ -12,33 +12,6 @@
 		text-align: center;
 		color: #8e44ad;
 	}
-
-.ToDoItem {
-	padding: 5px;
-}
-
-	.ToDoItem--DONE {
-		color: #16a085;
-	}
-
-	.ToDoItem__status {
-		margin-right: 10px;
-		cursor: pointer;
-	}
-
-		.ToDoItem__status:hover {
-
-		}
-
-	.ToDoItem__copy {
-		text-align: right;
-		float: right;
-	}
-
-		.ToDoItem__copy:hover {
-			color: red;
-		}
-
 
 @media (max-width: 600px) {
 	.ToDoList {

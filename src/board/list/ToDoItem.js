@@ -5,12 +5,20 @@ import { RIEInput } from 'riek';
 import { copyToDo, modifyToDo } from "../../store/actions/items";
 import { DateCode } from "../../services/datecode";
 
+import './ToDoItem.css';
+
+
 class ToDoItem extends React.Component {
 
 	render () {
 		let {item} = this.props;
 		return (
 			<div className={`ToDoItem ToDoItem--${item.status}`}>
+
+				<span className="ToDoItem__priority">
+					{ item.priority === 1 ? <i className="fa fa-angle-up"> </i>: null }
+					{ item.priority === 2 ? <i className="fa fa-angle-double-up"> </i>: null }
+				</span>
 
 				<span className="ToDoItem__status" onClick={() => this.clickOnStatus()}>
 					<i className={`fa ${item.status === 'DONE' ? 'fa-check-circle' : 'fa-circle-thin'}`}> </i>
@@ -22,7 +30,10 @@ class ToDoItem extends React.Component {
 					propName="text"
 					className={"editable"}/>
 
-				<i className="fa fa-arrow-right ToDoItem__copy" onClick={() => this.copy(1)}> </i>
+				<span className="ToDoItem__controls">
+					<i className="fa fa-copy ToDoItem__copy" alt="Copy to next day" onClick={() => this.copy(1)}> </i>
+					<i className="fa fa-angle-up" alt="Set higher priority" onClick={() => this.increasePriority()}> </i>
+				</span>
 
 			</div>
 		)
@@ -36,6 +47,17 @@ class ToDoItem extends React.Component {
 	textChanged (text) {
 		const { listId, item } = this.props;
 		this.props.dispatch(modifyToDo(listId, item._id, {text}));
+	}
+
+	setPriority (priority = 0) {
+		const { listId, item } = this.props;
+		this.props.dispatch(modifyToDo(listId, item._id, {priority}));
+	}
+
+	increasePriority () {
+		const { item } = this.props;
+		const priority = item.priority >= 2 ? 0 : item.priority + 1;
+		this.setPriority(priority)
 	}
 
 	copy (days) {

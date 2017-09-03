@@ -1,0 +1,43 @@
+
+.ToDoItem {
+	padding: 5px;
+}
+
+	.ToDoItem--DONE {
+		color: #16a085;
+	}
+
+	.ToDoItem:hover .ToDoItem__controls {
+		display: inline;
+	}
+
+	.ToDoItem__status {
+		margin-right: 10px;
+		cursor: pointer;
+	}
+
+		.ToDoItem__status:hover {
+
+		}
+
+	.ToDoItem__priority {
+		width: 20px;
+		display: inline-block;
+	}
+
+	.ToDoItem__controls {
+		display: none;
+	}
+
+		.ToDoItem__controls i {
+			text-align: right;
+			float: right;
+			padding: 3px;
+			margin-left: 3px;
+			cursor: pointer;
+		}
+
+			.ToDoItem__controls i:hover {
+				color: red;
+			}
+

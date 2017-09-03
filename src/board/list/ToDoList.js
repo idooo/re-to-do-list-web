@@ -18,6 +18,7 @@ class ToDoList extends React.Component {
 
 				{items
 					.filter(item => item.dateCode === dateCode)
+					.sort((a, b) => a > b ? 1 : 0)
 					.map((item, index) => {
 						return <ToDoItem key={index} item={item} listId={listId}/>;
 					})}
