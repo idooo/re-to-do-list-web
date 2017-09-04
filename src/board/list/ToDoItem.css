@@ -2,6 +2,8 @@
 .ToDoItem {
 	padding: 5px;
 	font-size: 14px;
+	display: flex;
+	height: 26px;
 }
 
 	.ToDoItem--DONE {
@@ -9,7 +11,25 @@
 	}
 
 	.ToDoItem:hover .ToDoItem__controls {
-		display: inline;
+		visibility: visible;
+	}
+
+	.ToDoItem > * {
+		align-self: center;
+	}
+
+	.ToDoItem__priority {
+		width: 24px;
+		display: inline-block;
+	}
+
+	.ToDoItem__status {
+		margin-right: 10px;
+		cursor: pointer;
+	}
+
+	.ToDoItem__text {
+		width: 100%;
 	}
 
 	.ToDoItem__input {
@@ -17,6 +37,7 @@
 		color: #8e44ad;
 		font-size: 14px;
 		padding: 0;
+		width: 100%;
 		font-style: italic;
 		background-color: transparent;
 	}
@@ -29,27 +50,13 @@
 			outline: none;
 		}
 
-	.ToDoItem__status {
-		margin-right: 10px;
-		cursor: pointer;
-	}
-
-		.ToDoItem__status:hover {
-
-		}
-
-	.ToDoItem__priority {
-		width: 20px;
-		display: inline-block;
-	}
-
 	.ToDoItem__controls {
-		display: none;
+		visibility: hidden;
+		width: 60px;
 	}
 
 		.ToDoItem__controls i {
 			text-align: right;
-			float: right;
 			padding: 3px;
 			margin-left: 3px;
 			cursor: pointer;

@@ -28,12 +28,15 @@ class ToDoItem extends React.Component {
 					value={item.text}
 					change={object => this.textChanged(object.text)}
 					propName="text"
+					className="ToDoItem__text"
 					classEditing="ToDoItem__input"/>
 
-				<span className="ToDoItem__controls">
-					<i className="fa fa-copy ToDoItem__copy" alt="Copy to next day" onClick={() => this.copy(1)}> </i>
+				{/*<input type="text" className="ToDoItem__input"/>*/}
+
+				<div className="ToDoItem__controls">
 					<i className="fa fa-angle-up" alt="Set higher priority" onClick={() => this.increasePriority()}> </i>
-				</span>
+					<i className="fa fa-copy ToDoItem__copy" alt="Copy to next day" onClick={() => this.copy(1)}> </i>
+				</div>
 
 			</div>
 		)
