@@ -1,25 +1,45 @@
 import * as moment from 'moment';
 
-export const TODO_DATE_CODE_FORMAT = 'DDMMYYYY';
+export const TODO_DATE_CODE_FORMAT = 'YYYYMMDD';
 
 export class DateCode {
 
 	/**
-	 * Returns a range of date codes for specified date [-1 day, today, +1 day]
+	 * Returns a range of three date codes for specified date [-1 day, today, +1 day]
 	 *
 	 * @example
 	 * for 2017-09-23 12:10 .... date input
 	 * output will be ['22092017', '23092017', '24092017']
 	 *
-	 * @param date
+	 * @param {Date} [date]
 	 * @returns {[string, string, string]}
 	 */
-	static getRangeCodes (date = undefined) {
+	static getThreeDayCodes (date = undefined) {
 		return [
 			moment(date).subtract(1, 'day').format(TODO_DATE_CODE_FORMAT),
 			moment(date).format(TODO_DATE_CODE_FORMAT),
 			moment(date).add(1, 'day').format(TODO_DATE_CODE_FORMAT)
 		];
+	}
+
+	/**
+	 * Returns array of date codes for the current work week
+	 * @param {Date} [date]
+	 * @param {Number} [weekAdjustment] - subtract week from the date
+	 * @returns {[string, string, string]}
+	 */
+	static getWeekdaysCodes (date = undefined, weekAdjustment = 0) {
+		const startOfWeek = moment(date).startOf('isoweek').subtract(weekAdjustment, 'week');
+		return Array.from(Array(5).keys()).map(i => moment(startOfWeek).add(i, 'day').format(TODO_DATE_CODE_FORMAT));
+	}
+
+	/**
+	 * Returns array of date codes for a previous work week
+	 * @param {Date} [date]
+	 * @returns {[string, string, string]}
+	 */
+	static getPreviousWeekdaysCodes (date) {
+		return DateCode.getWeekdaysCodes(date, 1)
 	}
 
 	/**

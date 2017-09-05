@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
 import items from './items';
-import auth from './auth';
+import board from './board';
 import lists from './lists';
 
 const rootReducer = combineReducers({
 	lists,
 	items,
-	auth
+	board
 });
 
 export {

@@ -12,15 +12,21 @@ import configureStore from "./store/configure";
 import storage from "./store/storage";
 import APIService from "./services/API";
 import { JWT_COOKIE_NAME } from "./services/auth";
+import { changeViewToThreeDays } from "./store/actions/board";
 
 import './reset.css';
 import './index.css';
 import './font-awesome/css/font-awesome.css'
 
-const store = configureStore(storage.get('RETODO') || {});
 
+// Store configuration
+const store = configureStore(storage.get('RETODO') || {});
+store.dispatch(changeViewToThreeDays());
+
+// Auth
 APIService.addAuthorisationHeader(Cookies.get(JWT_COOKIE_NAME));
 
+// React
 ReactDOM.render(
 	<Provider store={store}>
 		<HashRouter>

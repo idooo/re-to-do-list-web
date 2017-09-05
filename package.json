@@ -1,6 +1,6 @@
 {
   "name": "web-re-to-do-list",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "js-cookie": "^2.1.4",

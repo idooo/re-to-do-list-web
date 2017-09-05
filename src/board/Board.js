@@ -1,24 +1,32 @@
 import React from 'react';
 import { connect } from "react-redux";
-import ToDoList from "./list/ToDoList";
+import PropTypes from 'prop-types';
 import { fetchToDoItems } from "../store/actions/items";
+import ToDoList from "./list/ToDoList";
+import BoardControl from "./BoardControl";
 
 import './Board.css';
-import { DateCode } from "../services/datecode";
 
 
 class Board extends React.Component {
 
 	render () {
 		const listId = this.props.match.params.listId;
-		const dateCodes = DateCode.getRangeCodes();
+		const { dateCodes} = this.props;
 
 		return (
 			<div className="Board">
+
+				<BoardControl />
+
 				<div className="Board__container">
-					<ToDoList dateCode={dateCodes[0]} listId={listId}/>
-					<ToDoList dateCode={dateCodes[1]} listId={listId}/>
-					<ToDoList dateCode={dateCodes[2]} listId={listId}/>
+					{dateCodes.map((item, i) => {
+						return <ToDoList
+							className={`ToDoList--length-${dateCodes.length}`}
+							key={i}
+							dateCode={item}
+							listId={listId}/>
+					})}
 				</div>
 			</div>
 		)
@@ -30,4 +38,16 @@ class Board extends React.Component {
 	}
 }
 
-export default connect()(Board)
+ToDoList.propTypes = {
+	dateCodes: PropTypes.array,
+	view: PropTypes.string
+};
+
+const mapStateToProps = (state) => {
+	return {
+		dateCodes: state.board.dateCodes || [],
+		view: state.board.view || ''
+	}
+};
+
+export default connect(mapStateToProps)(Board)

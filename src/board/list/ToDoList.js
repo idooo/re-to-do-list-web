@@ -13,7 +13,7 @@ class ToDoList extends React.Component {
 		const {items, dateCode, listId} = this.props;
 
 		return (
-			<div className="ToDoList">
+			<div className={`ToDoList ${this.props.className}`}>
 				<h5 className="ToDoList__header">{DateCode.formattedDateCode(dateCode)}</h5>
 
 				{items
