@@ -3,14 +3,24 @@
 	padding: 2px 5px;
 	font-size: 14px;
 	display: flex;
+	min-height: 25px;
 }
 
-	.ToDoItem--DONE {
+	.ToDoItem--DONE .ToDoItem__status,
+	.ToDoItem--DONE .ToDoItem__text {
 		color: #16a085;
 	}
 
-	.ToDoItem:hover .ToDoItem__controls {
-		visibility: visible;
+	.ToDoItem--DELETED .ToDoItem__status,
+	.ToDoItem--DELETED .ToDoItem__text {
+		color: #b5b5b5;
+		text-decoration: line-through;
+		font-style: italic;
+	}
+
+	.ToDoItem--MOVED .ToDoItem__status,
+	.ToDoItem--MOVED .ToDoItem__text {
+		color: #16a085;
 	}
 
 	.ToDoItem > * {
@@ -48,20 +58,3 @@
 		.ToDoItem__input:focus {
 			outline: none;
 		}
-
-	.ToDoItem__controls {
-		visibility: hidden;
-		width: 60px;
-	}
-
-		.ToDoItem__controls i {
-			text-align: right;
-			padding: 3px;
-			margin-left: 3px;
-			cursor: pointer;
-		}
-
-			.ToDoItem__controls i:hover {
-				color: red;
-			}
-

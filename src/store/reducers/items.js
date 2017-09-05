@@ -4,7 +4,8 @@ import {
 	ADD_TODO_SUCCESS,
 	LOAD_TODO_LIST,
 	MODIFY_TODO,
-	MODIFY_TODO_FAILED
+	MODIFY_TODO_FAILED,
+	TODO_STATUS_TYPES
 } from "../actions/items";
 
 
@@ -14,7 +15,7 @@ const todo = (state = {}, action) => {
 			return {
 				_id: action.temporaryId,
 				text: action.text,
-				status: 'OPEN',
+				status: TODO_STATUS_TYPES.OPEN,
 				dateDelta: action.dateDelta,
 				uuid: action.uuid
 			};

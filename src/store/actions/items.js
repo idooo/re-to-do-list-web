@@ -8,6 +8,12 @@ export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const ADD_TODO_FAILED = 'ADD_TODO_FAILED';
 export const LOAD_TODO_LIST = 'LOAD_TODO_LIST';
 
+export const TODO_STATUS_TYPES = {
+	DONE: 'DONE',
+	OPEN: 'OPEN',
+	MOVED: 'MOVED',
+	DELETED: 'DELETED'
+};
 
 export const addToDo = (listId, item) => {
 
